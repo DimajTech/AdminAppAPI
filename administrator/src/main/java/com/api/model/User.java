@@ -43,6 +43,8 @@ public class User {
     @Column(name = "Role", length = 20)
     private String role;
 
+    public User() {}
+
     public String getId() {
         return id;
     }

@@ -1,6 +1,7 @@
 package com.api.controller;
 
 import com.api.model.User;
+import com.api.service.SendEmail;
 import com.api.service.UserService;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -68,4 +69,31 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+
+
+    @GetMapping("/getPendingUsers")
+    public ResponseEntity<?> getPendingUsers() {
+        try {
+            List<User> users = userService.getPendingUsers();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (SQLException ex) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PatchMapping("/changeUserStatus/{id}")
+    public ResponseEntity<?> changeUserStatus(@PathVariable(value = "id") String id, @RequestBody String status) {
+        try{
+            String email = userService.changeUserStatus(id, status);
+            status = status.equalsIgnoreCase("accepted") ? "aprobada" : "rechazada";
+            SendEmail.sendRegistrationEmail(email, status);
+            return new ResponseEntity<>(HttpStatus.OK);
+        }catch(SQLException ex){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(Exception ex){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
