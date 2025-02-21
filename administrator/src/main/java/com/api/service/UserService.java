@@ -67,4 +67,16 @@ public class UserService {
         userRepository.save(user);
         return user.getEmail();
     }
+
+    public List<User> getProfessors() throws SQLException {
+        List<Object[]> result = userRepository.getProfessors();
+        List<User> professors = new ArrayList<>();
+        for (Object[] user : result) {
+            User professor = new User();
+            professor.setId((String) user[0]);
+            professor.setName((String) user[1]);
+            professors.add(professor);
+        }
+        return professors;
+    }
 }

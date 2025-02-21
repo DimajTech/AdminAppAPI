@@ -96,4 +96,14 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getProfessors")
+    public ResponseEntity<?> getProfessors() {
+        try {
+            List<User> users = userService.getProfessors();
+            return new ResponseEntity<>(users, HttpStatus.OK);
+        } catch (SQLException ex) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
 }
