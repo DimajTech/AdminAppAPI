@@ -12,4 +12,7 @@ public interface UserRepository extends JpaRepository <User, String> {
 
     @Query("SELECT u.id, u.name, u.email, u.role FROM User u WHERE u.registrationStatus = 'pending'")
     List<Object[]> findPendingUsers();
+
+    @Query("SELECT u.id, u.name FROM User u WHERE u.role = 'professor'")
+    List<Object[]> getProfessors();
 }
