@@ -14,7 +14,7 @@ public class PieceOfNews {
     @Column(name = "Title", length = 200)
     private String title;
 
-    @Column(name = "File", columnDefinition = "nvarchar(max)")
+    @Column(name = "[File]", columnDefinition = "nvarchar(max)")
     private String file;
 
     @Lob
