@@ -17,6 +17,7 @@ import java.util.List;
 @RequestMapping(path="/api/pieceOfNews")
 public class PieceOfNewsController {
 
+
     @Autowired
     private PieceOfNewsService pieceOfNewsService;
 

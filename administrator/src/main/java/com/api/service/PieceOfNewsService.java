@@ -38,7 +38,7 @@ public class PieceOfNewsService {
 
         byte[] pictureBytes = null;
 
-        if (news.getPicture() != null && news.getPicture().startsWith("data:image")) {
+        if (news.getPicture() != null) {
             // Extrae el contenido después de "base64,"
             String base64Image = news.getPicture().split(",")[1];
             pictureBytes = Base64.getDecoder().decode(base64Image);
