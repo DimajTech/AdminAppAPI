@@ -21,6 +21,7 @@ public interface CommentNewsRepository extends JpaRepository<CommentNews, String
 
     @Query(value = "EXEC GetCommentByPieceOfNewsId @Id = ?1", nativeQuery = true)
     List<CommentNewsDTO> getCommentByPieceOfNewsId(String id);
+
 }
 
 
