@@ -26,6 +26,7 @@ public interface CommentNewsRepository extends JpaRepository<CommentNews, String
     @Transactional
     @Query(value = "EXEC DeleteCommentNewsById @Id = ?1", nativeQuery = true)
     void deleteCommentById(String id);
+
 }
 
 
