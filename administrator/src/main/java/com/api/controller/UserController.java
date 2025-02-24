@@ -70,6 +70,17 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getUserDetailByEmail/{email}")
+    public ResponseEntity<User> getUserDetailByEmail(@PathVariable String email) {
+        try {
+            User user = userService.getUserByEmail(email);
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        } catch (SQLException ex) {
+            return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+        }
+    }
+
+
 
     @GetMapping("/getPendingUsers")
     public ResponseEntity<?> getPendingUsers() {
