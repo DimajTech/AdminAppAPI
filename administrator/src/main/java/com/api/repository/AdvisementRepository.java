@@ -13,13 +13,11 @@ import java.util.Optional;
 public interface AdvisementRepository extends JpaRepository<Advisement, String> {
 
     @Query(value = "EXEC GetPublicAdvisements", nativeQuery = true)
-    List<Advisement> getPublicAdvisements();
-
+    List<Object[]> getPublicAdvisementsRaw();
 
     @Query(value = "EXEC GetPrivateAdvisements", nativeQuery = true)
-    List<Advisement> getPrivateAdvisements();
-
+    List<Object[]> getPrivateAdvisementsRaw();
 
     @Query(value = "EXEC GetAdvisementById @id = :id", nativeQuery = true)
-    Optional<Advisement> getAdvisementById(@Param("id") String id);
+    Optional<Object[]> getAdvisementByIdRaw(@Param("id") String id);
 }

@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.sql.SQLException;
 import java.util.List;
 import com.api.service.AdvisementService;
-import com.api.model.Advisement;
+import com.api.DTO.AdvisementDTO;
 
 @CrossOrigin(origins = "*")
 @RestController
@@ -17,17 +17,19 @@ public class AdvisementController {
 
 
     @GetMapping("/getAdvisementById/{id}")
-    public Advisement getAdvisementById(@PathVariable(value = "id") String id) throws SQLException {
+    public AdvisementDTO getAdvisementById(@PathVariable(value = "id") String id) throws SQLException {
         return advisementService.getAdvisementById(id);
     }
 
+
     @GetMapping("/getPublicAdvisements")
-    public List<Advisement> getPublicAdvisements() throws SQLException {
+    public List<AdvisementDTO> getPublicAdvisements() throws SQLException {
         return advisementService.getPublicAdvisements();
     }
 
+
     @GetMapping("/getPrivateAdvisements")
-    public List<Advisement> getPrivateAdvisements() throws SQLException {
+    public List<AdvisementDTO> getPrivateAdvisements() throws SQLException {
         return advisementService.getPrivateAdvisements();
     }
 }
