@@ -4,6 +4,17 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "[User]")
+@NamedStoredProcedureQuery(
+        name = "InsertProfessorUser",
+        procedureName = "InsertProfessorUser",
+        parameters = {
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "id", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "name", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "email", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "password", type = String.class),
+                @StoredProcedureParameter(mode = ParameterMode.IN, name = "role", type = String.class)
+        }
+)
 public class User {
 
     @Id

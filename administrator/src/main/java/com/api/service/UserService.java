@@ -27,10 +27,18 @@ public class UserService {
     public void saveUser(User user) throws SQLException {
         userRepository.save(user);
     }
+    public void saveProfessorUser(User user) {
+        userRepository.insertProfessorUser(user.getId(),user.getName(), user.getEmail(), user.getPassword(), user.getRole());
+    }
 
     public User getUserById(String id) throws SQLException {
         Optional<User> optionalUser = userRepository.findById(id);
         return optionalUser.orElseThrow(() -> new RuntimeException("User not found for id :: " + id));
+    }
+
+    public User getUserByEmail(String email) throws SQLException {
+        User optionalUser = userRepository.getUserByEmail(email);
+        return optionalUser;
     }
 
     public void deleteUserById(String id) throws SQLException {

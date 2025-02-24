@@ -36,7 +36,7 @@ public class CommentNewsService {
     }
 
     public void deleteCommentNewsById(String id) throws SQLException {
-        commentNewsRepository.deleteById(id);
+        commentNewsRepository.deleteCommentById(id);
     }
 
 }
