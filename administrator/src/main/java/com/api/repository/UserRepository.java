@@ -3,6 +3,8 @@ package com.api.repository;
 import com.api.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.jpa.repository.query.Procedure;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -15,4 +17,15 @@ public interface UserRepository extends JpaRepository <User, String> {
 
     @Query("SELECT u.id, u.name FROM User u WHERE u.role = 'professor'")
     List<Object[]> getProfessors();
+
+    @Procedure(name = "InsertProfessorUser")
+    void insertProfessorUser(
+            @Param("id") String id,
+            @Param("name") String name,
+            @Param("email") String email,
+            @Param("password") String password,
+            @Param("role") String role
+    );
+    boolean existsByEmail(String email);
+
 }

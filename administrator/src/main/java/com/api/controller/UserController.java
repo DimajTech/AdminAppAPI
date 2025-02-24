@@ -1,6 +1,7 @@
 package com.api.controller;
 
 import com.api.model.User;
+import com.api.repository.UserRepository;
 import com.api.service.SendEmail;
 import com.api.service.UserService;
 import org.json.JSONObject;
@@ -18,6 +19,8 @@ public class UserController {
 
     @Autowired
     private UserService userService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("/getAllUsers")
     public List<User> getAllUsers() {
@@ -42,6 +45,24 @@ public class UserController {
             return ResponseEntity
                     .badRequest()
                     .body("User not inserted");
+        }
+    }
+    @PostMapping("/saveProfessorUser")
+    public ResponseEntity<?> saveProfessorUser(@RequestBody User user) {
+        JSONObject response = new JSONObject();
+        try {
+            if (userRepository.existsByEmail(user.getEmail())) {
+                response.put("message", "El correo ya está registrado.");
+                return ResponseEntity.badRequest().body(response.toString());
+            }
+
+            userService.saveProfessorUser(user);
+            response.put("message", "Usuario registrado con éxito.");
+            return ResponseEntity.ok(response.toString());
+
+        } catch (Exception ex) {
+            response.put("message", "Error al registrar el usuario.");
+            return ResponseEntity.badRequest().body(response.toString());
         }
     }
 
