@@ -35,7 +35,8 @@ public class CourseController {
                 course.setId(UUID.randomUUID().toString());
             }
             courseService.saveCourse(course);
-            return ResponseEntity.ok(new JSONObject().put("message", "Course added successfully"));
+
+            return ResponseEntity.ok(course);
         }catch(Exception ex){
             return ResponseEntity.badRequest().body("Error creating course");
         }
