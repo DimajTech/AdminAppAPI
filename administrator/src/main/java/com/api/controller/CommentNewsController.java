@@ -46,7 +46,7 @@ public class CommentNewsController {
         JSONObject response = new JSONObject();
         try {
             commentNewsService.deleteCommentNewsById(id);
-            response.put("message", "PieceOfNews deleted");
+            response.put("message", "CommentNews deleted");
             response.put("isSuccess", true);
             return new ResponseEntity<String>(response.toString(), HttpStatus.OK);
         } catch (SQLException ex) {

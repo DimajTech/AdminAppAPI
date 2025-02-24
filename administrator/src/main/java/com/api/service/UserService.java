@@ -36,6 +36,11 @@ public class UserService {
         return optionalUser.orElseThrow(() -> new RuntimeException("User not found for id :: " + id));
     }
 
+    public User getUserByEmail(String email) throws SQLException {
+        User optionalUser = userRepository.getUserByEmail(email);
+        return optionalUser;
+    }
+
     public void deleteUserById(String id) throws SQLException {
         userRepository.deleteById(id);
     }
