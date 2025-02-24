@@ -1,5 +1,6 @@
 package com.api.service;
 
+import com.api.DTO.UpdateStudentDTO;
 import com.api.model.User;
 import com.api.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -86,5 +87,9 @@ public class UserService {
             professors.add(professor);
         }
         return professors;
+    }
+
+    public void updateStudent(UpdateStudentDTO student) throws SQLException {
+        userRepository.updateStudent(student.getName(), student.getPicture(), student.getDescription(), student.getLinkedIn(), student.getProfessionalBackground(), student.getPassword(), student.getId());
     }
 }

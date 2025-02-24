@@ -1,5 +1,6 @@
 package com.api.controller;
 
+import com.api.DTO.UpdateStudentDTO;
 import com.api.model.User;
 import com.api.repository.UserRepository;
 import com.api.service.SendEmail;
@@ -135,6 +136,32 @@ public class UserController {
             return new ResponseEntity<>(users, HttpStatus.OK);
         } catch (SQLException ex) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/updateUser")
+    public ResponseEntity<?> updateUser(@RequestBody User user) {
+        try{
+            userService.saveUser(user);
+            return ResponseEntity.ok("User updated successfully");
+        }catch(SQLException ex){
+            return ResponseEntity.badRequest().body("Error updating user");
+        }
+        catch(Exception ex){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/updateStudent")
+    public ResponseEntity<?> updateStudent(@RequestBody UpdateStudentDTO student) {
+        try{
+            userService.updateStudent(student);
+            return ResponseEntity.ok("Student updated successfully");
+        }catch(SQLException ex){
+            return ResponseEntity.badRequest().body("Error updating student");
+        }
+        catch(Exception ex){
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
