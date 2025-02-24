@@ -8,8 +8,6 @@ import java.util.Date;
 
 public class CommentNewsDTO {
 
-
-
     private String id;
     private String pieceOfNewsId;
     private String text;
