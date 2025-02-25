@@ -1,7 +1,7 @@
 package com.api.model;
 
 import jakarta.persistence.*;
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @Entity
 @Table(name = "CommentNews")
@@ -21,7 +21,7 @@ public class CommentNews {
     private String text;
 
     @Column(name = "Date")
-    private LocalDateTime date;
+    private Date date;
 
     public String getId() {
         return id;
@@ -55,11 +55,11 @@ public class CommentNews {
         this.text = text;
     }
 
-    public LocalDateTime getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDateTime date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 }

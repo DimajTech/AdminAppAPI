@@ -55,4 +55,8 @@ public class PieceOfNewsService {
         pieceOfNewsRepository.deleteById(id);
     }
 
+    public void deletePieceOfNewsById(String id) throws SQLException {
+        pieceOfNewsRepository.deletePieceOfNewsById(id);
+
+    }
 }

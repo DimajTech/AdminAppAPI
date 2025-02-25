@@ -22,4 +22,9 @@ public interface PieceOfNewsRepository  extends JpaRepository<PieceOfNews, Strin
     @Transactional
     @Query(value = "EXEC InsertNews @Id = ?1, @Title = ?2, @Picture = ?3, @AuthorId = ?4, @Description = ?5", nativeQuery = true)
     void addPieceOfNews(String id, String title, byte[] picture, String authorId, String description);
+
+    @Modifying
+    @Transactional
+    @Query(value = "EXEC DeleteNewsById @Id = ?1", nativeQuery = true)
+    void deletePieceOfNewsById(String id);
 }
