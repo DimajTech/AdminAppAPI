@@ -13,7 +13,7 @@ jobs:
   build:
     runs-on: windows-latest
     permissions:
-      contents: read #This is required for actions/checkout
+      contents: read # This is required for actions/checkout
 
     steps:
       - uses: actions/checkout@v4
@@ -26,12 +26,13 @@ jobs:
 
       - name: Build with Maven
         run: mvn clean install
+        working-directory: administrator  # Se ejecuta en la carpeta correcta
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:
           name: java-app
-          path: '${{ github.workspace }}/target/*.war'
+          path: '${{ github.workspace }}/administrator/target/*.war'  # Se corrige la ruta del artefacto
 
   deploy:
     runs-on: windows-latest
@@ -40,8 +41,8 @@ jobs:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
     permissions:
-      id-token: write #This is required for requesting the JWT
-      contents: read #This is required for actions/checkout
+      id-token: write # This is required for requesting the JWT
+      contents: read # This is required for actions/checkout
 
     steps:
       - name: Download artifact from build job
@@ -63,4 +64,3 @@ jobs:
           app-name: 'administratorAPI'
           slot-name: 'Production'
           package: '*.war'
-          
