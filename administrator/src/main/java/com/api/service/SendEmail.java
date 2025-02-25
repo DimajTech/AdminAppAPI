@@ -11,7 +11,7 @@ import java.nio.charset.StandardCharsets;
 import java.time.Duration;
 
 public class SendEmail {
-    private static final String API_EMAIL_URL = "http://localhost:5092/api/SendEmail/SendEmail";
+    private static final String API_EMAIL_URL = "https://emailapi-bqgmc8cscwbdadgr.mexicocentral-01.azurewebsites.net/api/SendEmail/SendEmail";
     private static final HttpClient httpClient;
 
     // Bloque estático para inicializar el HttpClient
