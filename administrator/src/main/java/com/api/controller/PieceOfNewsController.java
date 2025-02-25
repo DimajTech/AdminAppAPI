@@ -45,7 +45,7 @@ public class PieceOfNewsController {
     public ResponseEntity<?> deletePieceOfNewsById(@PathVariable(value = "id") String id) {
         JSONObject response = new JSONObject();
         try {
-            pieceOfNewsService.deleteById(id);
+            pieceOfNewsService.deletePieceOfNewsById(id);
             response.put("message", "PieceOfNews deleted");
             response.put("isSuccess", true);
             return new ResponseEntity<String>(response.toString(), HttpStatus.OK);
